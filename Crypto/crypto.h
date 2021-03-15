@@ -7,6 +7,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <iostream>
+#include <typeinfo>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Crypto; }
@@ -23,12 +24,13 @@ public:
 private slots:
     void on_pushButtonUpdate_clicked();
     void updateLabels();
-    std::map<std::string, QString> get24HourInfo();
-    void parse24HourInfo(QNetworkReply* reply, std::map<std::string, QString> &parsedData);
+    void get24HourInfo();
+    void parse24HourInfo();
 
 private:
     Ui::Crypto *ui;
     QNetworkAccessManager *manager;
     QNetworkRequest request;
+    std::map<std::string, QString> Data24Hour;
 };
 #endif // CRYPTO_H

@@ -16,50 +16,39 @@ Crypto::~Crypto()
     delete manager;
 }
 
-std::map<std::string, QString> Crypto::get24HourInfo()
+void Crypto::get24HourInfo()
 {
+    request.setUrl(QUrl("https://api.pro.coinbase.com/products/BTC-USD/stats"));
+    QNetworkReply *reply = manager->get(request);
 
-    QNetworkReply* reply = qobject_cast<QNetworkReply*> (QObject::sender());
-
-    std::map<std::string, QString> Data24Hour;
-    parse24HourInfo(reply, Data24Hour);
-
-    for (auto item: Data24Hour)
-    {
-        std::cout << item.first << std::endl;
-        qDebug() << item.second;
-    }
-
-    return Data24Hour;
+    connect(reply, SIGNAL(finished()), this, SLOT(parse24HourInfo()));
 }
 
-void Crypto::parse24HourInfo(QNetworkReply* reply, std::map<std::string, QString> &parsedData)
+void Crypto::parse24HourInfo()
 {
-
+    QNetworkReply* reply = qobject_cast<QNetworkReply*> (QObject::sender());
     QString answer = reply->readAll();
 
     QJsonDocument jsonDoc = QJsonDocument::fromJson(answer.toUtf8());
     QJsonObject jsonObj = jsonDoc.object();
 
-    parsedData["low"] = jsonObj["low"].toString();
-    parsedData["high"] = jsonObj["high"].toString();
-    parsedData["open"] = jsonObj["open"].toString();
-    parsedData["last"] = jsonObj["last"].toString();
-
-    qDebug() << answer;
+    Data24Hour["low"] = jsonObj["low"].toString();
+    Data24Hour["high"] = jsonObj["high"].toString();
+    Data24Hour["open"] = jsonObj["open"].toString();
+    Data24Hour["last"] = jsonObj["last"].toString();
 }
 
 void Crypto::updateLabels()
 {
-    request.setUrl(QUrl("https://api.pro.coinbase.com/products/BTC-USD/stats"));
-    manager->get(request);
-
+    get24HourInfo();
+    ui->labelLow->setText(Data24Hour["low"]);
+    ui->labelHigh->setText(Data24Hour["high"]);
+    ui->labelOpen->setText(Data24Hour["open"]);
+    ui->labelClose->setText(Data24Hour["last"]);
 }
 
 
 void Crypto::on_pushButtonUpdate_clicked()
 {
-    request.setUrl(QUrl("https://api.pro.coinbase.com/products/BTC-USD/stats"));
-    QNetworkReply *reply = manager->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(get24HourInfo()));
+    updateLabels();
 }
