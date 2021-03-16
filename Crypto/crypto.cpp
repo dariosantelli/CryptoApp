@@ -8,6 +8,9 @@ Crypto::Crypto(QWidget *parent)
     ui->setupUi(this);
 
     manager = new QNetworkAccessManager();
+    updateLabels();
+    getCoinbaseProducts();
+    getCoinbaseProducts();
 }
 
 Crypto::~Crypto()
@@ -16,8 +19,43 @@ Crypto::~Crypto()
     delete manager;
 }
 
+void Crypto::getCoinbaseProducts()
+{
+    request.setUrl(QUrl("https://api.pro.coinbase.com/products"));
+    QNetworkReply *reply = manager->get(request);
+    connect(reply, SIGNAL(finished()), this, SLOT(parseCoinbaseProducts()));
+}
+
+void Crypto::parseCoinbaseProducts()
+{
+    QNetworkReply* reply = qobject_cast<QNetworkReply*> (QObject::sender());
+    QString answer = reply->readAll();
+
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(answer.toUtf8());
+    QJsonArray jsonArr = jsonDoc.array();
+
+    for (auto pair: jsonArr) {
+        QJsonObject element = pair.toObject();
+        products.insert(element["id"].toString());
+    }
+
+}
+
 void Crypto::get24HourInfo()
 {
+    //take string in from line edit as parameter
+    QString pair;
+    pair = ui->lineEditPairEntry->text();
+
+    auto search = products.find(pair);
+    std::cout << search;
+
+    //if (products.find(pair))
+    //qDebug() << products.find(pair)
+    //assemble url from that pair
+    //check if request is valid
+        //if not display error of some sort, don't crash
+
     request.setUrl(QUrl("https://api.pro.coinbase.com/products/BTC-USD/stats"));
     QNetworkReply *reply = manager->get(request);
 
@@ -51,4 +89,6 @@ void Crypto::updateLabels()
 void Crypto::on_pushButtonUpdate_clicked()
 {
     updateLabels();
+    getCoinbaseProducts();
+    qDebug() << products.size();
 }

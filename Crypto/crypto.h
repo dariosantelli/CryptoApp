@@ -4,10 +4,12 @@
 #include <QMainWindow>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <iostream>
 #include <typeinfo>
+#include <unordered_set>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Crypto; }
@@ -22,15 +24,19 @@ public:
     ~Crypto();
 
 private slots:
+    void getCoinbaseProducts();
+    void parseCoinbaseProducts();
     void on_pushButtonUpdate_clicked();
     void updateLabels();
     void get24HourInfo();
     void parse24HourInfo();
+
 
 private:
     Ui::Crypto *ui;
     QNetworkAccessManager *manager;
     QNetworkRequest request;
     std::map<std::string, QString> Data24Hour;
+    std::unordered_set<QString> products;
 };
 #endif // CRYPTO_H
