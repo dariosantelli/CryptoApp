@@ -10,6 +10,8 @@
 #include <iostream>
 #include <typeinfo>
 #include <unordered_set>
+#include <windows.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Crypto; }
@@ -28,7 +30,6 @@ private slots:
     void parseCoinbaseProducts();
     void on_pushButtonUpdate_clicked();
     void updateLabels();
-    void get24HourInfo();
     void parse24HourInfo();
 
 

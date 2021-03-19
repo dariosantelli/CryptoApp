@@ -31,16 +31,17 @@ public:
     QWidget *tab;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QLabel *label_2;
-    QLabel *label;
-    QLabel *labelOpen;
-    QLabel *labelClose;
-    QLabel *labelHigh;
     QPushButton *pushButtonUpdate;
-    QLabel *label_3;
-    QLabel *label_4;
-    QLabel *labelLow;
     QLineEdit *lineEditPairEntry;
+    QLabel *labelLow;
+    QLabel *label_4;
+    QLabel *label_3;
+    QLabel *labelHigh;
+    QLabel *labelMessage;
+    QLabel *label_2;
+    QLabel *labelOpen;
+    QLabel *labelCurrent;
+    QLabel *label;
     QWidget *tab_2;
     QStatusBar *statusbar;
     QMenuBar *menubar;
@@ -62,57 +63,14 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         gridLayoutWidget = new QWidget(tab);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(0, 0, 401, 221));
+        gridLayoutWidget->setGeometry(QRect(0, 50, 401, 131));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(gridLayoutWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        gridLayout->addWidget(label_2, 1, 1, 1, 1);
-
-        label = new QLabel(gridLayoutWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        gridLayout->addWidget(label, 0, 1, 1, 1);
-
-        labelOpen = new QLabel(gridLayoutWidget);
-        labelOpen->setObjectName(QString::fromUtf8("labelOpen"));
-        QFont font;
-        font.setPointSize(12);
-        labelOpen->setFont(font);
-
-        gridLayout->addWidget(labelOpen, 0, 2, 1, 1);
-
-        labelClose = new QLabel(gridLayoutWidget);
-        labelClose->setObjectName(QString::fromUtf8("labelClose"));
-
-        gridLayout->addWidget(labelClose, 1, 2, 1, 1);
-
-        labelHigh = new QLabel(gridLayoutWidget);
-        labelHigh->setObjectName(QString::fromUtf8("labelHigh"));
-
-        gridLayout->addWidget(labelHigh, 2, 2, 1, 1);
-
         pushButtonUpdate = new QPushButton(gridLayoutWidget);
         pushButtonUpdate->setObjectName(QString::fromUtf8("pushButtonUpdate"));
 
-        gridLayout->addWidget(pushButtonUpdate, 1, 0, 1, 1);
-
-        label_3 = new QLabel(gridLayoutWidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        gridLayout->addWidget(label_3, 2, 1, 1, 1);
-
-        label_4 = new QLabel(gridLayoutWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        gridLayout->addWidget(label_4, 3, 1, 1, 1);
-
-        labelLow = new QLabel(gridLayoutWidget);
-        labelLow->setObjectName(QString::fromUtf8("labelLow"));
-
-        gridLayout->addWidget(labelLow, 3, 2, 1, 1);
+        gridLayout->addWidget(pushButtonUpdate, 2, 0, 1, 1);
 
         lineEditPairEntry = new QLineEdit(gridLayoutWidget);
         lineEditPairEntry->setObjectName(QString::fromUtf8("lineEditPairEntry"));
@@ -122,7 +80,74 @@ public:
         sizePolicy.setHeightForWidth(lineEditPairEntry->sizePolicy().hasHeightForWidth());
         lineEditPairEntry->setSizePolicy(sizePolicy);
 
-        gridLayout->addWidget(lineEditPairEntry, 0, 0, 1, 1);
+        gridLayout->addWidget(lineEditPairEntry, 1, 0, 1, 1);
+
+        labelLow = new QLabel(gridLayoutWidget);
+        labelLow->setObjectName(QString::fromUtf8("labelLow"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("8514oem"));
+        labelLow->setFont(font);
+
+        gridLayout->addWidget(labelLow, 2, 2, 1, 1);
+
+        label_4 = new QLabel(gridLayoutWidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Ebrima"));
+        font1.setPointSize(11);
+        font1.setBold(true);
+        label_4->setFont(font1);
+        label_4->setLayoutDirection(Qt::LeftToRight);
+
+        gridLayout->addWidget(label_4, 2, 1, 1, 1);
+
+        label_3 = new QLabel(gridLayoutWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setFont(font1);
+        label_3->setLayoutDirection(Qt::LeftToRight);
+
+        gridLayout->addWidget(label_3, 3, 1, 1, 1);
+
+        labelHigh = new QLabel(gridLayoutWidget);
+        labelHigh->setObjectName(QString::fromUtf8("labelHigh"));
+        labelHigh->setFont(font);
+
+        gridLayout->addWidget(labelHigh, 3, 2, 1, 1);
+
+        labelMessage = new QLabel(gridLayoutWidget);
+        labelMessage->setObjectName(QString::fromUtf8("labelMessage"));
+        labelMessage->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(labelMessage, 3, 0, 1, 1);
+
+        label_2 = new QLabel(gridLayoutWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFont(font1);
+        label_2->setLayoutDirection(Qt::LeftToRight);
+
+        gridLayout->addWidget(label_2, 0, 1, 1, 1);
+
+        labelOpen = new QLabel(gridLayoutWidget);
+        labelOpen->setObjectName(QString::fromUtf8("labelOpen"));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("8514oem"));
+        font2.setPointSize(12);
+        labelOpen->setFont(font2);
+
+        gridLayout->addWidget(labelOpen, 1, 2, 1, 1);
+
+        labelCurrent = new QLabel(gridLayoutWidget);
+        labelCurrent->setObjectName(QString::fromUtf8("labelCurrent"));
+        labelCurrent->setFont(font);
+
+        gridLayout->addWidget(labelCurrent, 0, 2, 1, 1);
+
+        label = new QLabel(gridLayoutWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setFont(font1);
+        label->setLayoutDirection(Qt::LeftToRight);
+
+        gridLayout->addWidget(label, 1, 1, 1, 1);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
@@ -148,15 +173,17 @@ public:
     void retranslateUi(QMainWindow *Crypto)
     {
         Crypto->setWindowTitle(QCoreApplication::translate("Crypto", "Crypto", nullptr));
-        label_2->setText(QCoreApplication::translate("Crypto", "Close:", nullptr));
-        label->setText(QCoreApplication::translate("Crypto", "Open:", nullptr));
-        labelOpen->setText(QCoreApplication::translate("Crypto", "TextLabel", nullptr));
-        labelClose->setText(QCoreApplication::translate("Crypto", "TextLabel", nullptr));
-        labelHigh->setText(QCoreApplication::translate("Crypto", "TextLabel", nullptr));
         pushButtonUpdate->setText(QCoreApplication::translate("Crypto", "Update", nullptr));
-        label_3->setText(QCoreApplication::translate("Crypto", "High:", nullptr));
-        label_4->setText(QCoreApplication::translate("Crypto", "Low:", nullptr));
-        labelLow->setText(QCoreApplication::translate("Crypto", "TextLabel", nullptr));
+        lineEditPairEntry->setText(QCoreApplication::translate("Crypto", "BTC-USD", nullptr));
+        labelLow->setText(QString());
+        label_4->setText(QCoreApplication::translate("Crypto", "24 Hour Low:", nullptr));
+        label_3->setText(QCoreApplication::translate("Crypto", "24 Hour High:", nullptr));
+        labelHigh->setText(QString());
+        labelMessage->setText(QString());
+        label_2->setText(QCoreApplication::translate("Crypto", "Current Price:", nullptr));
+        labelOpen->setText(QString());
+        labelCurrent->setText(QString());
+        label->setText(QCoreApplication::translate("Crypto", "24 Hour Open:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("Crypto", "Lookup", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("Crypto", "Tab 2", nullptr));
     } // retranslateUi
