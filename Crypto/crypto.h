@@ -31,7 +31,9 @@ private slots:
     void on_pushButtonUpdate_clicked();
     void updateLabels();
     void parse24HourInfo();
-
+    //void calculatePortfolio();
+    //double getTickerValue(QString ticker);
+    //void on_pushButtonCalculate_clicked();
 
 private:
     Ui::Crypto *ui;
